@@ -17,10 +17,8 @@ class StockSearch extends Component {
 	handleUpdate = () => {
 		var {stock} = this.state;
 
-		// Validate stocks
-		if (stock.trim().length) {
-			this.props.getStocks(stock);
-		}
+		// Validate, then get stocks
+		if (stock.trim().length) this.props.getStocks(stock);
 
 		//Clear Input
 		this.setState({
@@ -111,8 +109,6 @@ class StockSearch extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	return state;
-}
+var mapStateToProps = state => state;
 
 export default connect(mapStateToProps, {getStocks, clearHistory, updateStocks})(StockSearch);
