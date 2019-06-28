@@ -8,7 +8,9 @@ class StockSearch extends Component {
 		super(props);
 
 		this.state = {
-			stock: ""
+			stock: "",
+			timerOn: false,
+			seconds: 2
 		}
 	}
 
@@ -26,7 +28,42 @@ class StockSearch extends Component {
 		}
 	}
 
+	startCountdown = () => {
+		this.setState({
+			timerOn: true,
+			count: this.state.seconds
+		});
+
+		this.timer = setInterval(() => {
+			var newCount = this.state.count - 1;
+
+			this.setState({
+				count: newCount >= 0 ? newCount : 0
+			});
+
+			// When countdown is reached
+			if (newCount === -1) {
+				this.setState({
+					count: this.state.seconds
+				});
+			}
+		}, 1000);
+	}
+
+	stopCountdown = () => {
+		this.setState({
+			timerOn: false
+		});
+
+		clearInterval(this.timer);
+		this.timer = undefined;
+	}
+
 	render() {
+		var {timerOn} = this.state;
+
+		console.log("alpha", this.state);
+
 		return (
 			<div>
 				<InputGroup>
@@ -56,15 +93,21 @@ class StockSearch extends Component {
 
 				<InputGroup>
 					<InputGroup.Append>
-						<Button variant="success">Start Automatic Updates</Button>
+						{timerOn ? 
+							<Button variant="success" onClick={() => this.stopCountdown()}>Stop Automatic Updates</Button>
+							:
+							<Button variant="success" onClick={() => this.startCountdown()}>Start Automatic Updates</Button>
+						}
 					</InputGroup.Append>
 
-					<select>
+					<select value={this.state.seconds} onChange={e => this.setState({seconds: e.target.value})}>
 						<option value="2">Every 2 Seconds</option>
 						<option value="5">Every 5 Seconds</option>
 						<option value="10">Every 10 Seconds</option>
 						<option value="30">Every 30 Seconds</option>
 					</select>
+
+					<h2>{timerOn ? this.state.count.toString() : null}</h2>
 				</InputGroup>
 			</div>
 		);
