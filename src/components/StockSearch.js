@@ -62,8 +62,6 @@ class StockSearch extends Component {
 	render() {
 		var {timerOn} = this.state;
 
-		console.log("alpha", this.state);
-
 		return (
 			<div>
 				<InputGroup>
@@ -93,11 +91,7 @@ class StockSearch extends Component {
 
 				<InputGroup>
 					<InputGroup.Append>
-						{timerOn ? 
-							<Button variant="success" onClick={() => this.stopCountdown()}>Stop Automatic Updates</Button>
-							:
-							<Button variant="success" onClick={() => this.startCountdown()}>Start Automatic Updates</Button>
-						}
+						<Button variant="success" onClick={() => timerOn ? this.stopCountdown() : this.startCountdown()}>{timerOn ? "Stop" : "Start"} Automatic Updates</Button>
 					</InputGroup.Append>
 
 					<select value={this.state.seconds} onChange={e => this.setState({seconds: e.target.value})}>
