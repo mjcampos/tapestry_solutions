@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {InputGroup, FormControl, Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
-import {getStocks} from '../actions';
+import {getStocks, clearHistory} from '../actions';
 
 class StockSearch extends Component {
 	constructor(props) {
@@ -18,6 +18,11 @@ class StockSearch extends Component {
 		// Validate stocks
 		if (stock.length) {
 			this.props.getStocks(stock);
+
+			//Clear Input
+			this.setState({
+				stock: ""
+			});
 		}
 	}
 
@@ -43,7 +48,7 @@ class StockSearch extends Component {
 					</InputGroup.Append>
 
 					<InputGroup.Append>
-						<Button variant="danger">Clear History</Button>
+						<Button onClick={() => this.props.clearHistory()} variant="danger">Clear History</Button>
 					</InputGroup.Append>
 				</InputGroup>
 
@@ -68,4 +73,4 @@ function mapStateToProps(state) {
 	return state;
 }
 
-export default connect(mapStateToProps, {getStocks})(StockSearch);
+export default connect(mapStateToProps, {getStocks, clearHistory})(StockSearch);
