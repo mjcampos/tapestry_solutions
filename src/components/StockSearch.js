@@ -104,7 +104,7 @@ class StockSearch extends Component {
 						<option value="30">Every 30 Seconds</option>
 					</select>
 
-					<h2>{timerOn ? `Next update in ${this.state.count.toString()} seconds` : null}</h2>
+					<h3>{timerOn ? `Next update in ${this.state.count.toString()} seconds` : null}</h3>
 				</InputGroup>
 			</div>
 		);

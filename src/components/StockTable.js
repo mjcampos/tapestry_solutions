@@ -7,25 +7,29 @@ class StockTable extends Component {
 		var {stocks} = this.props;
 
 		return(
-			<Table>
-				<thead>
-					<tr>
-						<th>Symbol</th>
-						<th>Price</th>
-						<th>Price Date (GMT)</th>
-					</tr>
-				</thead>
+			<div>
+				<h2>Quote Information</h2>
+				
+				<Table>
+					<thead>
+						<tr>
+							<th>Symbol</th>
+							<th>Price</th>
+							<th>Price Date (GMT)</th>
+						</tr>
+					</thead>
 
-				<tbody>
-					{stocks.map((stock, i) => (
-							<tr key={i}>
-								<td>{stock.symbol}</td>
-								<td>{stock.price}</td>
-								<td>{stock.date}</td>
-							</tr>
-						))}
-				</tbody>
-			</Table>
+					<tbody>
+						{stocks.map((stock, i) => (
+								<tr key={i}>
+									<td>{stock.symbol}</td>
+									<td>{stock.price}</td>
+									<td>{stock.date}</td>
+								</tr>
+							))}
+					</tbody>
+				</Table>
+			</div>
 		);
 	}
 }
