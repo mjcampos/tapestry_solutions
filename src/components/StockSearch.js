@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {InputGroup, FormControl, Button} from 'react-bootstrap';
+import {connect} from 'react-redux';
+import {getStocks} from '../actions';
 
 class StockSearch extends Component {
 	constructor(props) {
@@ -13,9 +15,9 @@ class StockSearch extends Component {
 	handleUpdate = () => {
 		var {stock} = this.state;
 
-		// Validated that the stock state has value
+		// Validate stocks
 		if (stock.length) {
-
+			this.props.getStocks(stock);
 		}
 	}
 
@@ -62,4 +64,8 @@ class StockSearch extends Component {
 	}
 }
 
-export default StockSearch;
+function mapStateToProps(state) {
+	return state;
+}
+
+export default connect(mapStateToProps, {getStocks})(StockSearch);

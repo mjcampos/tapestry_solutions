@@ -3,13 +3,14 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 
 // Redux components
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
-var store = createStore(rootReducer);
+var store = createStore(rootReducer, applyMiddleware(thunk));
 
-console.log("store", store.getState());
+// console.log("store", store.getState());
 
 store.subscribe(() => console.log('store', store.getState()));
 
