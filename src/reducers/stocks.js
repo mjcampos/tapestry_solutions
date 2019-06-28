@@ -5,11 +5,7 @@ function stocks(state = [], action) {
 		case GET_STOCKS:
 			return [
 				...state,
-				{
-					symbol: action.symbol,
-					price: action.price,
-					date: action.date
-				}
+				...action.quotes
 			];
 		case CLEAR_HISTORY:
 			return [];

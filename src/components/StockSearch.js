@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {InputGroup, FormControl, Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
-import {getStocks, clearHistory} from '../actions';
+import {getStocks, clearHistory, updateStocks} from '../actions';
 
 class StockSearch extends Component {
 	constructor(props) {
@@ -18,14 +18,14 @@ class StockSearch extends Component {
 		var {stock} = this.state;
 
 		// Validate stocks
-		if (stock.length) {
+		if (stock.trim().length) {
 			this.props.getStocks(stock);
-
-			//Clear Input
-			this.setState({
-				stock: ""
-			});
 		}
+
+		//Clear Input
+		this.setState({
+			stock: ""
+		});
 	}
 
 	startCountdown = () => {
@@ -46,6 +46,8 @@ class StockSearch extends Component {
 				this.setState({
 					count: this.state.seconds
 				});
+
+				// Call update action
 			}
 		}, 1000);
 	}
@@ -66,7 +68,7 @@ class StockSearch extends Component {
 			<div>
 				<InputGroup>
 					<InputGroup.Prepend>
-						<InputGroup.Text>Search For Stock</InputGroup.Text>
+						<InputGroup.Text>Enter one or more symbols to trace</InputGroup.Text>
 					</InputGroup.Prepend>
 
 					<FormControl
@@ -112,4 +114,4 @@ function mapStateToProps(state) {
 	return state;
 }
 
-export default connect(mapStateToProps, {getStocks, clearHistory})(StockSearch);
+export default connect(mapStateToProps, {getStocks, clearHistory, updateStocks})(StockSearch);
