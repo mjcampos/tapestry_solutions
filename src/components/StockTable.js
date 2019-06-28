@@ -3,12 +3,16 @@ import {Table} from 'react-bootstrap';
 import {connect} from 'react-redux';
 
 class StockTable extends Component {
+	getMostRecentDate = () => new Date(Math.max.apply(null, this.props.stocks.map(stock => new Date(stock.date))));
+
 	render() {
 		var {stocks} = this.props;
 
 		return(
 			<div>
 				<h2>Quote Information</h2>
+
+				{this.props.stocks.length ? <p>The data is as current as {this.getMostRecentDate().toUTCString()}</p> : null}
 				
 				<Table>
 					<thead>
