@@ -21,7 +21,7 @@ export var getStocks = searchVal => (dispatch, getState) => {
 				quotes.push({
 					symbol: res.data.quotes[i].symbol,
 					price: res.data.quotes[i].lastTradePrice,
-					date: res.data.generatedDate
+					date: (new Date(res.data.generatedDate)).toUTCString()
 				});
 			}
 
@@ -60,7 +60,7 @@ export var updateStocks = () => (dispatch, getState) => {
 				quotes.push({
 					symbol: res.data.quotes[i].symbol,
 					price: res.data.quotes[i].lastTradePrice,
-					date: res.data.generatedDate
+					date: (new Date(res.data.generatedDate)).toUTCString()
 				});
 			}
 
