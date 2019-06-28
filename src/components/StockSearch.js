@@ -42,6 +42,8 @@ class StockSearch extends Component {
 
 				</InputGroup>
 
+				<p className="warning">* Warning: Duplicates will be ignored</p>
+
 				<InputGroup>
 					<InputGroup.Append>
 						<Button onClick={() => this.handleUpdate()}>Update Now</Button>
