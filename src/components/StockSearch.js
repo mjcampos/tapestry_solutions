@@ -10,6 +10,15 @@ class StockSearch extends Component {
 		}
 	}
 
+	handleUpdate = () => {
+		var {stock} = this.state;
+
+		// Validated that the stock state has value
+		if (stock.length) {
+
+		}
+	}
+
 	render() {
 		return (
 			<div>
@@ -28,7 +37,7 @@ class StockSearch extends Component {
 
 				<InputGroup>
 					<InputGroup.Append>
-						<Button>Update Now</Button>
+						<Button onClick={() => this.handleUpdate()}>Update Now</Button>
 					</InputGroup.Append>
 
 					<InputGroup.Append>
@@ -42,10 +51,10 @@ class StockSearch extends Component {
 					</InputGroup.Append>
 
 					<select>
-						<option value="2">2</option>
-						<option value="5">5</option>
-						<option value="10">10</option>
-						<option value="30">30</option>
+						<option value="2">Every 2 Seconds</option>
+						<option value="5">Every 5 Seconds</option>
+						<option value="10">Every 10 Seconds</option>
+						<option value="30">Every 30 Seconds</option>
 					</select>
 				</InputGroup>
 			</div>
