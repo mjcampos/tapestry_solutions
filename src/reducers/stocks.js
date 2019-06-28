@@ -1,4 +1,4 @@
-import {GET_STOCKS, CLEAR_HISTORY, DO_NOTHING} from '../utils/constants';
+import {GET_STOCKS, CLEAR_HISTORY, DO_NOTHING, UPDATE_STOCKS} from '../utils/constants';
 
 function stocks(state = [], action) {
 	switch(action.type) {
@@ -9,6 +9,10 @@ function stocks(state = [], action) {
 			];
 		case CLEAR_HISTORY:
 			return [];
+		case UPDATE_STOCKS:
+			return [
+				...action.quotes
+			];
 		case DO_NOTHING:
 			return state;
 		default:

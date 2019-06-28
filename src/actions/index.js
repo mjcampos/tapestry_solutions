@@ -1,4 +1,4 @@
-import {GET_STOCKS, CLEAR_HISTORY, DO_NOTHING} from '../utils/constants';
+import {GET_STOCKS, CLEAR_HISTORY, DO_NOTHING, UPDATE_STOCKS} from '../utils/constants';
 import axios from 'axios';
 
 var url = "http://candidate-services.southcentralus.cloudapp.azure.com/randomQuote/quote?"
@@ -46,13 +46,30 @@ export var getStocks = searchVal => (dispatch, getState) => {
 
 export var updateStocks = () => (dispatch, getState) => {
 	// Get all symbols
-	// var symbols = getState().stocks.map(stock => stock.symbol);
+	var symbols = getState().stocks.map(stock => stock.symbol);
 
-	// if (symbols.length) {
-	// 	for(var i = 0; i < symbols.length; i++) {
-	// 		searchURL = url 
-	// 	}
-	// }
+	if (symbols.length) {
+		axios.get(url, {
+			params: {
+				symbols: symbols.join(",")
+			}
+		}).then(res => {
+			var quotes = [];
+
+			for(var i = 0; i < res.data.quotes.length; i++) {
+				quotes.push({
+					symbol: res.data.quotes[i].symbol,
+					price: res.data.quotes[i].lastTradePrice,
+					date: res.data.generatedDate
+				});
+			}
+
+			dispatch({
+				type: UPDATE_STOCKS,
+				quotes
+			})
+		})
+	}
 }
 
 export function clearHistory() {

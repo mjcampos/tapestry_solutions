@@ -48,6 +48,7 @@ class StockSearch extends Component {
 				});
 
 				// Call update action
+				this.props.updateStocks();
 			}
 		}, 1000);
 	}
