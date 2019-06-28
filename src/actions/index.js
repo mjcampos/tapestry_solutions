@@ -1,4 +1,4 @@
-import {GET_STOCKS} from '../utils/constants';
+import {GET_STOCKS, CLEAR_HISTORY} from '../utils/constants';
 import axios from 'axios';
 
 var url = "http://candidate-services.southcentralus.cloudapp.azure.com/randomQuote/quote?symbols="
@@ -20,4 +20,10 @@ export var getStocks = searchVal => dispatch => {
 				type: ""
 			});
 		});
+}
+
+export function clearHistory() {
+	return {
+		type: CLEAR_HISTORY
+	}
 }
