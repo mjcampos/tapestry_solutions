@@ -1,7 +1,7 @@
 import {GET_STOCKS, CLEAR_HISTORY, DO_NOTHING, UPDATE_STOCKS} from '../utils/constants';
 import axios from 'axios';
 
-var url = "http://candidate-services.southcentralus.cloudapp.azure.com/randomQuote/quote?"
+var url = "http://candidate-services.southcentralus.cloudapp.azure.com/randomQuote/quote?";
 
 export var getStocks = searchVal => (dispatch, getState) => {
 	// Start by collecting all symbols of listed stocks
