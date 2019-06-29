@@ -10,7 +10,8 @@ class StockSearch extends Component {
 		this.state = {
 			stock: "",
 			timerOn: false,
-			seconds: 2
+			seconds: 2,
+			secondsArr: [2, 5, 10, 30]
 		}
 	}
 
@@ -75,7 +76,6 @@ class StockSearch extends Component {
 						value={this.state.stock}
 						onChange={e => this.setState({stock: e.target.value})}
 					/>
-
 				</InputGroup>
 
 				<p className="warning">* Warning: Duplicates will be ignored</p>
@@ -96,10 +96,7 @@ class StockSearch extends Component {
 					</InputGroup.Append>
 
 					<select value={this.state.seconds} onChange={e => this.setState({seconds: e.target.value})}>
-						<option value="2">Every 2 Seconds</option>
-						<option value="5">Every 5 Seconds</option>
-						<option value="10">Every 10 Seconds</option>
-						<option value="30">Every 30 Seconds</option>
+						{this.state.secondsArr.map((second, i) => <option key={i} value={second}>Every {second} Seconds</option>)}
 					</select>
 
 					<h3>{timerOn ? `Next update in ${this.state.count.toString()} seconds` : null}</h3>
